@@ -16,7 +16,6 @@ describe('gulp-rev-css-url', function () {
             .pipe(rev())
             .pipe(override())
             .pipe(gulp.dest('./results/'))
-            .pipe(override())
             .pipe(rev.manifest())
             .pipe(gulp.dest('./results/'))
             .on('end', function () {
