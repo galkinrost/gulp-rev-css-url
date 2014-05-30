@@ -43,7 +43,7 @@ module.exports = function override() {
                 try {
                     _f.file.contents = new Buffer(contents);
                 } catch (err) {
-                    this.emit('error', new gutil.PluginError('gulp-rev-css-url', err));
+                    self.emit('error', new gutil.PluginError('gulp-rev-css-url', err));
                 }
             }
             self.push(_f.file);
