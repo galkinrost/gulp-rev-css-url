@@ -1,6 +1,6 @@
 {
   "name": "gulp-rev-css-url",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "The lightweight plugin to override urls in css files to hashed after gulp-rev",
   "repository": {
     "type": "git",
