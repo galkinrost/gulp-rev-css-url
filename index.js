@@ -38,7 +38,7 @@ module.exports = function override() {
             if (cssRegExp.test(_f.file.revOrigPath) && _f.file.contents) {
                 var contents = _f.file.contents.toString();
                 f.forEach(function (__f) {
-                    contents = contents.replace(__f.origPath, __f.hashedPath);
+                    contents = contents.replace(new RegExp(__f.origPath, 'g'), __f.hashedPath);
                 });
 
                 try {

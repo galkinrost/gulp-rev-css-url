@@ -10,7 +10,7 @@ describe('gulp-rev-css-url', function () {
     })
 
     it('Should override urls in css', function (done) {
-        var expectedCSS = '.background-image {\n    background-image: url(\'../images/dummy-7051c65f.jpg\');\n}';
+        var expectedCSS = '.background-image {\n    background-image: url(\'../images/dummy-7051c65f.jpg\');\n}\n\n.background-image-2 {\n    background-image: url(\'../images/dummy-7051c65f.jpg\');\n}';
         gulp.src('./fixtures/**/*')
             .pipe(rev())
             .pipe(override())
@@ -18,11 +18,11 @@ describe('gulp-rev-css-url', function () {
             .pipe(rev.manifest())
             .pipe(gulp.dest('./results/'))
             .on('end', function () {
-                var css = fs.readFileSync('./results/styles/styles-6a09860b.css', 'utf-8');
+                var css = fs.readFileSync('./results/styles/styles-5f3db2f0.css', 'utf-8');
                 css.should.be.equal(expectedCSS);
                 var manifest = require('./results/rev-manifest.json', 'utf-8');
                 manifest['images/dummy.jpg'].should.be.equal('images/dummy-7051c65f.jpg');
-                manifest['styles/styles.css'].should.be.equal('styles/styles-6a09860b.css');
+                manifest['styles/styles.css'].should.be.equal('styles/styles-5f3db2f0.css');
                 done();
             });
     });
