@@ -3,6 +3,10 @@ CSS-URL
 
 The lightweight plugin to override urls in css files to hashed after <a href="https://www.npmjs.org/package/gulp-rev">gulp-rev</a>
 
+What is the result?
+--
+See <a href="https://github.com/galkinrost/gulp-rev-css-url/tree/master/expected">here</a>
+
 Install
 --
 ```sh
