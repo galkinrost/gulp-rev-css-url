@@ -3,7 +3,7 @@ var gutil = require('gulp-util');
 var path = require('path');
 
 module.exports = function override() {
-    var cssRegExp = /\.css$/;
+    var allowedPathRegExp = /\.(css|js)$/;
 
     function relPath(base, filePath) {
         if (filePath.indexOf(base) !== 0) {
@@ -35,7 +35,7 @@ module.exports = function override() {
     }, function (cb) {
         var self = this;
         f.forEach(function (_f) {
-            if (cssRegExp.test(_f.file.revOrigPath) && _f.file.contents) {
+            if ((allowedPathRegExp.test(_f.file.revOrigPath) ) && _f.file.contents) {
                 var contents = _f.file.contents.toString();
                 f.forEach(function (__f) {
                     contents = contents.replace(new RegExp(__f.origPath, 'g'), __f.hashedPath);
