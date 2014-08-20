@@ -30,15 +30,15 @@
     "gulp": "~3.6.2",
     "gulp-rev": "~0.4.0",
     "mocha": "~1.20.0",
-    "should": "~3.3.2",
     "gulp-jshint": "~1.6.1",
-    "fs-extra": "~0.9.1"
+    "fs-extra": "~0.9.1",
+    "chai": "~1.9.1"
   },
   "dependencies": {
     "gulp-util": "~2.2.14",
     "through2": "~0.4.2"
   },
   "scripts": {
-    "test": "mocha test.js -R list -r should"
+    "test": "mocha test.js -R list"
   }
 }
