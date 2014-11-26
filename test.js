@@ -8,7 +8,6 @@ var expect = require('chai').expect;
 describe('gulp-rev-css-url', function () {
     beforeEach(function (done) {
         fse.remove('./results', done);
-        done();
     })
 
     it('Should override urls in css and js', function (done) {
