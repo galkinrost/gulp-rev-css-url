@@ -24,10 +24,11 @@ module.exports = function override() {
 
         if (file.path && file.revOrigPath) {
             firstFile = firstFile || file;
-            var _relPath = relPath(firstFile.revOrigBase, file.revOrigPath);
+            var _relPath = relPath(path.resolve(firstFile.revOrigBase), file.revOrigPath);
+
             f.push({
                 origPath: _relPath,
-                hashedPath: relPath(firstFile.base, file.path),
+                hashedPath: relPath(path.resolve(firstFile.base), file.path),
                 file: file
             });
         }
