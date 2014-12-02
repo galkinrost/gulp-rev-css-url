@@ -39,9 +39,11 @@ module.exports = function override() {
             if ((allowedPathRegExp.test(_f.file.revOrigPath) ) && _f.file.contents) {
                 var contents = _f.file.contents.toString();
                 f.forEach(function (__f) {
+                    var origPath = __f.origPath.replace(new RegExp('\\' + path.sep, 'g'), '/').replace(/\./g, '\\.');
+                    var hashedPath = __f.hashedPath.replace(new RegExp('\\' + path.sep, 'g'), '/');
                     contents = contents.replace(
-                        new RegExp(__f.origPath.replace('.', "\\."), 'g'),
-                        __f.hashedPath);
+                        new RegExp(origPath, 'g'),
+                        hashedPath);
                 });
 
                 try {
