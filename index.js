@@ -1,9 +1,14 @@
 var through = require('through2');
+var crypto = require('crypto');
 var gutil = require('gulp-util');
 var path = require('path');
 
 module.exports = function override() {
     var allowedPathRegExp = /\.(css|js)$/;
+
+    function md5(str) {
+        return crypto.createHash('md5').update(str, 'utf8').digest('hex');
+    }
 
     function relPath(base, filePath) {
         if (filePath.indexOf(base) !== 0) {
@@ -36,8 +41,10 @@ module.exports = function override() {
     }, function (cb) {
         var self = this;
         f.forEach(function (_f) {
-            if ((allowedPathRegExp.test(_f.file.revOrigPath) ) && _f.file.contents) {
-                var contents = _f.file.contents.toString();
+            var file = _f.file;
+
+            if ((allowedPathRegExp.test(file.revOrigPath) ) && file.contents) {
+                var contents = file.contents.toString();
                 f.forEach(function (__f) {
                     var origPath = __f.origPath.replace(new RegExp('\\' + path.sep, 'g'), '/').replace(/\./g, '\\.');
                     var hashedPath = __f.hashedPath.replace(new RegExp('\\' + path.sep, 'g'), '/');
@@ -46,13 +53,16 @@ module.exports = function override() {
                         hashedPath);
                 });
 
-                try {
-                    _f.file.contents = new Buffer(contents);
-                } catch (err) {
-                    self.emit('error', new gutil.PluginError('gulp-rev-css-url', err));
-                }
+                file.contents = new Buffer(contents);
+
+                // update file's hash as it does in gulp-rev plugin
+                var hash = file.revHash = md5(contents).slice(0, 8);
+                var ext = path.extname(file.path);
+                var filename = path.basename(file.revOrigPath, ext) + '-' + hash + ext;
+                file.path = path.join(path.dirname(file.path), filename);
+
             }
-            self.push(_f.file);
+            self.push(file);
         });
         cb();
     });

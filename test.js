@@ -22,8 +22,8 @@ describe('gulp-rev-css-url', function () {
             .pipe(gulp.dest('./results/'))
             .on('end', function () {
                 // load results
-                var css = fs.readFileSync('./results/styles/styles-5f3db2f0.css', 'utf-8'),
-                    js = fs.readFileSync('./results/scripts/script-57cb6b72.js', 'utf-8'),
+                var css = fs.readFileSync('./results/styles/styles-ab9d8ca7.css', 'utf-8'),
+                    js = fs.readFileSync('./results/scripts/script-933cb2a0.js', 'utf-8'),
                     manifest = require('./results/rev-manifest.json', 'utf-8');
 
                 // check files' content
