@@ -24,7 +24,7 @@ describe('gulp-rev-css-url', function () {
             .pipe(gulp.dest('./results/'))
             .on('end', function () {
                 // load results
-                var css = fs.readFileSync('./results/styles/styles-270bf21e.css', 'utf-8'),
+                var css = fs.readFileSync('./results/styles/styles-5fff1f5b.css', 'utf-8'),
                     js = fs.readFileSync('./results/scripts/script-933cb2a0.js', 'utf-8'),
                     font1 = fs.readFileSync('./results/fonts/montserrat-light-webfont-41fe2e1a.woff', 'utf-8'),
                     font2 = fs.readFileSync('./results/fonts/montserrat-light-webfont-1b6441bc.woff2', 'utf-8'),
