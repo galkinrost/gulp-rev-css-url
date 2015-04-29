@@ -2,7 +2,7 @@
   "images/dummy.jpg": "images/dummy-7051c65f.jpg",
   "scripts/application.js": "scripts/application-5c2dec97.js",
   "scripts/script.js": "scripts/script-933cb2a0.js",
-  "styles/styles.css": "styles/styles-270bf21e.css",
-  "fonts/font1.woff": "fonts/font1-41fe2e1a.woff",
-  "fonts/font2.woff2": "fonts/font2-1b6441bc.woff2"
+  "styles/styles.css": "styles/styles-5fff1f5b.css",
+  "fonts/montserrat-light-webfont.woff": "fonts/montserrat-light-webfont-41fe2e1a.woff",
+  "fonts/montserrat-light-webfont.woff2": "fonts/montserrat-light-webfont-1b6441bc.woff2"
 }
