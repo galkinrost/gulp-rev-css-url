@@ -5,3 +5,11 @@
 .background-image-2 {
     background-image: url('../images/dummy-7051c65f.jpg');
 }
+
+@font-face {
+  font-family: "font";
+  font-style: normal;
+  font-weight: 300;
+  src: url('../fonts/montserrat-light-webfont-41fe2e1a.woff') format('woff'),
+       url('../fonts/montserrat-light-webfont-1b6441bc.woff2') format('woff2');
+}
