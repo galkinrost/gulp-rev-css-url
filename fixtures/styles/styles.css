@@ -7,9 +7,9 @@
 }
 
 @font-face {
-  font-family: "font";
-  font-style: normal;
-  font-weight: 300;
-  src: url('../fonts/montserrat-light-webfont.woff') format('woff'),
-       url('../fonts/montserrat-light-webfont.woff2') format('woff2');
+    font-family: "font";
+    font-style: normal;
+    font-weight: 300;
+    src: url('../fonts/montserrat-light-webfont.woff') format('woff'),
+         url('../fonts/montserrat-light-webfont.woff2') format('woff2');
 }

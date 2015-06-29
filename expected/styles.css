@@ -1,15 +1,15 @@
 .background-image {
-    background-image: url('../images/dummy-7051c65f.jpg');
+    background-image: url('../images/dummy-0849cad9cc.jpg');
 }
 
 .background-image-2 {
-    background-image: url('../images/dummy-7051c65f.jpg');
+    background-image: url('../images/dummy-0849cad9cc.jpg');
 }
 
 @font-face {
-  font-family: "font";
-  font-style: normal;
-  font-weight: 300;
-  src: url('../fonts/montserrat-light-webfont-41fe2e1a.woff') format('woff'),
-       url('../fonts/montserrat-light-webfont-1b6441bc.woff2') format('woff2');
+    font-family: "font";
+    font-style: normal;
+    font-weight: 300;
+    src: url('../fonts/montserrat-light-webfont-b2f7c06e09.woff') format('woff'),
+         url('../fonts/montserrat-light-webfont-86efde6016.woff2') format('woff2');
 }
