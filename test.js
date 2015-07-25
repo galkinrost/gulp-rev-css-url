@@ -4,6 +4,7 @@ var gulp = require('gulp');
 var fse = require('fs-extra');
 var override = require('./index');
 var expect = require('chai').expect;
+var through = require('through2');
 
 describe('gulp-rev-css-url', function () {
     beforeEach(function (done) {
@@ -55,6 +56,23 @@ describe('gulp-rev-css-url', function () {
                 expect(js).to.contain('application/json');
                 done();
             });
+    });
+
+    it('Should not reorder the pipeline', function (done) {
+        var outputOrder = [];
+        gulp.src(['./fixtures/scripts/script.js', './fixtures/scripts/application.js'])
+            .pipe(rev())
+            .pipe(override())
+            .pipe(through.obj(
+                function (file, enc, cb) {
+                    outputOrder.push(file.revOrigPath.replace(file.revOrigBase, ''));
+                    cb(null, file);
+                },
+                function (cb) {
+                    expect(outputOrder).to.deep.equal(['script.js', 'application.js']);
+                    done();
+                }
+            ));
     });
 
 });
