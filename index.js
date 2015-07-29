@@ -36,23 +36,24 @@ module.exports = function override() {
                 hashedPath: relPath(path.resolve(firstFile.base), file.path),
                 file: file
             });
-
-            // sort by filename length to not replace the common part(s) of several filenames
-            f.sort(function (a, b) {
-                if(a.origPath.length > b.origPath.length) return -1;
-                if(a.origPath.length < b.origPath.length) return 1;
-                return 0;
-            });
         }
         cb();
     }, function (cb) {
         var self = this;
+
+        // sort by filename length to not replace the common part(s) of several filenames
+        var longestFirst = f.slice().sort(function (a, b) {
+            if(a.origPath.length > b.origPath.length) return -1;
+            if(a.origPath.length < b.origPath.length) return 1;
+            return 0;
+        });
+
         f.forEach(function (_f) {
             var file = _f.file;
 
             if ((allowedPathRegExp.test(file.revOrigPath) ) && file.contents) {
                 var contents = file.contents.toString();
-                f.forEach(function (__f) {
+                longestFirst.forEach(function (__f) {
                     var origPath = __f.origPath.replace(new RegExp('\\' + path.sep, 'g'), '/').replace(/\./g, '\\.');
                     var hashedPath = __f.hashedPath.replace(new RegExp('\\' + path.sep, 'g'), '/');
                     contents = contents.replace(
