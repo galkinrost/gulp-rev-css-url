@@ -5,6 +5,7 @@ var path = require('path');
 
 module.exports = function override() {
     var allowedPathRegExp = /\.css$/;
+    var cssUrlRegExp = /url\(['"]([^'"]*)['"]\)/gi;
 
     function md5(str) {
         return crypto.createHash('md5').update(str, 'utf8').digest('hex');
@@ -23,49 +24,31 @@ module.exports = function override() {
     }
 
     var f = [];
+    var lookup = {};
 
     return through.obj(function (file, enc, cb) {
-        var firstFile = null;
-
         if (file.path && file.revOrigPath) {
-            firstFile = firstFile || file;
-            var _relPath = relPath(path.resolve(firstFile.revOrigBase), file.revOrigPath);
-
-            f.push({
-                origPath: _relPath,
-                hashedPath: relPath(path.resolve(firstFile.base), file.path),
-                file: file
-            });
+          f.push(file);
+          lookup[file.revOrigPath] = file.path;
         }
         cb();
     }, function (cb) {
         var self = this;
 
-        // sort by filename length to not replace the common part(s) of several filenames
-        var longestFirst = f.slice().sort(function (a, b) {
-            if(a.origPath.length > b.origPath.length) return -1;
-            if(a.origPath.length < b.origPath.length) return 1;
-            return 0;
-        });
-
-        f.forEach(function (_f) {
-            var file = _f.file;
-
+        f.forEach(function (file) {
             if ((allowedPathRegExp.test(file.revOrigPath) ) && file.contents) {
-              console.log(file.revOrigPath);
                 var contents = file.contents.toString();
-                longestFirst.forEach(function (__f) {
-                    var origPath = __f.origPath.replace(new RegExp('\\' + path.sep, 'g'), '/').replace(/\./g, '\\.');
-                    var hashedPath = __f.hashedPath.replace(new RegExp('\\' + path.sep, 'g'), '/');
-                    if(file.revOrigPath == '/Users/Luhn/Code/salesman/static/css/rezkutablet.com.css') {
-                      console.log(origPath);
-                      console.log(hashedPath);
-                    }
-                    contents = contents.replace(
-                        new RegExp(origPath, 'g'),
-                        hashedPath);
-                });
 
+                var contents = contents.replace(cssUrlRegExp, function(m, url) {
+                  var dir = path.parse(file.path).dir;
+                  var _path = path.join(dir, url);
+                  var _new = lookup[_path];
+                  if(!_new) {
+                    return m;  // Leave unmodified.
+                  }
+                  _new = path.relative(dir, _new);
+                  return 'url(\'' + _new + '\')';
+                });
                 file.contents = new Buffer(contents);
 
                 // update file's hash as it does in gulp-rev plugin
