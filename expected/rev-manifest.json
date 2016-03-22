@@ -1,7 +1,8 @@
 {
   "images/dummy.jpg": "images/dummy-0849cad9cc.jpg",
-  "styles/styles.css": "styles/styles-d329971534.css",
-	"styles/second.css": "styles/second-9a8c38f58e.css",
+	"styles/second.css": "styles/second-b62071ea94.css",
+	"styles/styles.css": "styles/styles-522f601534.css",
+	"styles/rel-image/spacer.gif": "styles/rel-image/spacer-b4682377dd.gif",
   "fonts/montserrat-light-webfont.woff": "fonts/montserrat-light-webfont-b2f7c06e09.woff",
   "fonts/montserrat-light-webfont.woff2": "fonts/montserrat-light-webfont-86efde6016.woff2"
 }

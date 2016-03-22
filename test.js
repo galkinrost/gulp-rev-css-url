@@ -23,19 +23,19 @@ describe('gulp-rev-css-url', function () {
             .pipe(rev.manifest())
             .pipe(gulp.dest('./results/'))
             .on('end', function () {
+                // check manifest
+                var manifest = require('./results/rev-manifest.json', 'utf-8');
+                expect(manifest).to.deep.equal(expectedManifest);
+
                 // load results
-                var css = fs.readFileSync('./results/styles/styles-d329971534.css', 'utf-8'),
+                var css = fs.readFileSync('./results/styles/styles-522f601534.css', 'utf-8'),
                     font1 = fs.readFileSync('./results/fonts/montserrat-light-webfont-b2f7c06e09.woff', 'utf-8'),
-                    font2 = fs.readFileSync('./results/fonts/montserrat-light-webfont-86efde6016.woff2', 'utf-8'),
-                    manifest = require('./results/rev-manifest.json', 'utf-8');
+                    font2 = fs.readFileSync('./results/fonts/montserrat-light-webfont-86efde6016.woff2', 'utf-8');
 
                 // check files' content
                 expect(css).to.equal(expectedCSS);
                 expect(expectedFont1).to.equal(font1);
                 expect(expectedFont2).to.equal(font2);
-
-                // check manifest
-                expect(manifest).to.deep.equal(expectedManifest);
 
                 done();
             });
