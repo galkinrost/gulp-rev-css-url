@@ -1,8 +1,7 @@
 {
   "images/dummy.jpg": "images/dummy-0849cad9cc.jpg",
-  "scripts/application.js": "scripts/application-5c2dec9780.js",
-  "scripts/script.js": "scripts/script-382f58fea6.js",
   "styles/styles.css": "styles/styles-d329971534.css",
+	"styles/second.css": "styles/second-9a8c38f58e.css",
   "fonts/montserrat-light-webfont.woff": "fonts/montserrat-light-webfont-b2f7c06e09.woff",
   "fonts/montserrat-light-webfont.woff2": "fonts/montserrat-light-webfont-86efde6016.woff2"
 }
