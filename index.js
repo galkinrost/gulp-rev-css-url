@@ -4,7 +4,7 @@ var gutil = require('gulp-util');
 var path = require('path');
 
 module.exports = function override() {
-    var allowedPathRegExp = /\.(css|js)$/;
+    var allowedPathRegExp = /\.css$/;
 
     function md5(str) {
         return crypto.createHash('md5').update(str, 'utf8').digest('hex');
@@ -52,10 +52,15 @@ module.exports = function override() {
             var file = _f.file;
 
             if ((allowedPathRegExp.test(file.revOrigPath) ) && file.contents) {
+              console.log(file.revOrigPath);
                 var contents = file.contents.toString();
                 longestFirst.forEach(function (__f) {
                     var origPath = __f.origPath.replace(new RegExp('\\' + path.sep, 'g'), '/').replace(/\./g, '\\.');
                     var hashedPath = __f.hashedPath.replace(new RegExp('\\' + path.sep, 'g'), '/');
+                    if(file.revOrigPath == '/Users/Luhn/Code/salesman/static/css/rezkutablet.com.css') {
+                      console.log(origPath);
+                      console.log(hashedPath);
+                    }
                     contents = contents.replace(
                         new RegExp(origPath, 'g'),
                         hashedPath);
