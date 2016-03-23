@@ -5,7 +5,7 @@ var path = require('path');
 
 module.exports = function override() {
     var allowedPathRegExp = /\.css$/;
-    var cssUrlRegExp = /url\(['"]([^'"]*)['"]\)/gi;
+    var cssUrlRegExp = /url\(['"]?([^'"\)]*)['"]?\)/gi;
 
     function md5(str) {
         return crypto.createHash('md5').update(str, 'utf8').digest('hex');
