@@ -13,6 +13,7 @@ describe('gulp-rev-css-url', function () {
 
     it('Should override urls in css', function (done) {
         var expectedCSS = fs.readFileSync('./expected/styles.css', 'utf-8'),
+            expectedCSS2 = fs.readFileSync('./expected/second.css', 'utf-8'),
             expectedFont1 = fs.readFileSync('./expected/montserrat-light-webfont.woff', 'utf-8'),
             expectedFont2 = fs.readFileSync('./expected/montserrat-light-webfont.woff2', 'utf-8'),
             expectedManifest = require('./expected/rev-manifest.json', 'utf-8');
@@ -29,11 +30,13 @@ describe('gulp-rev-css-url', function () {
 
                 // load results
                 var css = fs.readFileSync('./results/styles/styles-522f601534.css', 'utf-8'),
+                    css2 = fs.readFileSync('./results/styles/second-0d331ec6b6.css', 'utf-8'),
                     font1 = fs.readFileSync('./results/fonts/montserrat-light-webfont-b2f7c06e09.woff', 'utf-8'),
                     font2 = fs.readFileSync('./results/fonts/montserrat-light-webfont-86efde6016.woff2', 'utf-8');
 
                 // check files' content
                 expect(css).to.equal(expectedCSS);
+                expect(css2).to.equal(expectedCSS2);
                 expect(expectedFont1).to.equal(font1);
                 expect(expectedFont2).to.equal(font2);
 
