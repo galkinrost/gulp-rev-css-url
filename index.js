@@ -2,6 +2,7 @@ var through = require('through2');
 var crypto = require('crypto');
 var gutil = require('gulp-util');
 var path = require('path');
+var urlparse = require('url').parse;
 
 module.exports = function override() {
     var allowedPathRegExp = /\.css$/;
@@ -40,13 +41,19 @@ module.exports = function override() {
                 var contents = file.contents.toString();
 
                 var contents = contents.replace(cssUrlRegExp, function(m, url) {
+                  parsed = urlparse(url);
+                  if(parsed.host) {
+                    return m;
+                  }
                   var dir = path.parse(file.path).dir;
-                  var _path = path.join(dir, url);
+                  var _path = path.join(dir, parsed.pathname);
                   var _new = lookup[_path];
                   if(!_new) {
                     return m;  // Leave unmodified.
                   }
-                  _new = path.relative(dir, _new);
+                  _new = path.relative(dir, _new) +
+                    (parsed.search || '') +
+                    (parsed.hash || '');
                   return 'url(\'' + _new + '\')';
                 });
                 file.contents = new Buffer(contents);

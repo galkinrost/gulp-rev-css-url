@@ -1,0 +1,11 @@
+.background-image-3 {
+	background-image: url('../images/dummy-0849cad9cc.jpg?foobar');
+}
+
+.background-image-4 {
+	background-image: url('../images/dummy-0849cad9cc.jpg?#iefix');
+}
+
+.background-image-5 {
+	background-image: url('../images/dummy-0849cad9cc.jpg?foo#bar');
+}
