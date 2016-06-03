@@ -3,7 +3,7 @@
 }
 
 .background-image-2 {
-    background-image: url('../images/dummy.jpg');
+    background-image: url('rel-image/spacer.gif');
 }
 
 @font-face {

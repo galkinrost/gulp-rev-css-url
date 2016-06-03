@@ -11,9 +11,10 @@ describe('gulp-rev-css-url', function () {
         fse.remove('./results', done);
     })
 
-    it('Should override urls in css and js', function (done) {
+    it('Should override urls in css', function (done) {
         var expectedCSS = fs.readFileSync('./expected/styles.css', 'utf-8'),
-            expectedJs = fs.readFileSync('./expected/script.js', 'utf-8'),
+            expectedCSS2 = fs.readFileSync('./expected/second.css', 'utf-8'),
+            expectedFunnyURLs = fs.readFileSync('./expected/funny_urls.css', 'utf-8'),
             expectedFont1 = fs.readFileSync('./expected/montserrat-light-webfont.woff', 'utf-8'),
             expectedFont2 = fs.readFileSync('./expected/montserrat-light-webfont.woff2', 'utf-8'),
             expectedManifest = require('./expected/rev-manifest.json', 'utf-8');
@@ -24,43 +25,31 @@ describe('gulp-rev-css-url', function () {
             .pipe(rev.manifest())
             .pipe(gulp.dest('./results/'))
             .on('end', function () {
+                // check manifest
+                var manifest = require('./results/rev-manifest.json', 'utf-8');
+                expect(manifest).to.deep.equal(expectedManifest);
+
                 // load results
-                var css = fs.readFileSync('./results/styles/styles-d329971534.css', 'utf-8'),
-                    js = fs.readFileSync('./results/scripts/script-382f58fea6.js', 'utf-8'),
+                var css = fs.readFileSync('./results/styles/styles-522f601534.css', 'utf-8'),
+                    css2 = fs.readFileSync('./results/styles/second-0d331ec6b6.css', 'utf-8'),
+                    funnyURLs = fs.readFileSync('./results/styles/funny_urls-1f25c64e93.css', 'utf-8'),
                     font1 = fs.readFileSync('./results/fonts/montserrat-light-webfont-b2f7c06e09.woff', 'utf-8'),
-                    font2 = fs.readFileSync('./results/fonts/montserrat-light-webfont-86efde6016.woff2', 'utf-8'),
-                    manifest = require('./results/rev-manifest.json', 'utf-8');
+                    font2 = fs.readFileSync('./results/fonts/montserrat-light-webfont-86efde6016.woff2', 'utf-8');
 
                 // check files' content
                 expect(css).to.equal(expectedCSS);
-                expect(js).to.equal(expectedJs);
+                expect(css2).to.equal(expectedCSS2);
+                expect(funnyURLs).to.equal(expectedFunnyURLs);
                 expect(expectedFont1).to.equal(font1);
                 expect(expectedFont2).to.equal(font2);
 
-                // check manifest
-                expect(manifest).to.deep.equal(expectedManifest);
-
-                done();
-            });
-    });
-
-    it('Should not replace application/json with application.js', function(done) {
-        gulp.src('./fixtures/scripts/application.js')
-            .pipe(rev())
-            .pipe(override())
-            .pipe(gulp.dest('./results/'))
-            .on('end', function () {
-                var js = fs.readFileSync(
-                    './results/application-5c2dec9780.js',
-                    'utf-8');
-                expect(js).to.contain('application/json');
                 done();
             });
     });
 
     it('Should not reorder the pipeline', function (done) {
         var outputOrder = [];
-        gulp.src(['./fixtures/scripts/script.js', './fixtures/scripts/application.js'])
+        gulp.src(['./fixtures/styles/styles.css', './fixtures/styles/second.css'])
             .pipe(rev())
             .pipe(override())
             .pipe(through.obj(
@@ -69,7 +58,7 @@ describe('gulp-rev-css-url', function () {
                     cb(null, file);
                 },
                 function (cb) {
-                    expect(outputOrder).to.deep.equal(['script.js', 'application.js']);
+                    expect(outputOrder).to.deep.equal(['styles.css', 'second.css']);
                     done();
                 }
             ));
