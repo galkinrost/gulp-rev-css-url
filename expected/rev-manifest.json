@@ -1,8 +1,9 @@
 {
   "images/dummy.jpg": "images/dummy-0849cad9cc.jpg",
-  "scripts/application.js": "scripts/application-5c2dec9780.js",
-  "scripts/script.js": "scripts/script-382f58fea6.js",
-  "styles/styles.css": "styles/styles-d329971534.css",
+	"styles/styles.css": "styles/styles-522f601534.css",
+	"styles/second.css": "styles/second-0d331ec6b6.css",
+	"styles/funny_urls.css": "styles/funny_urls-1f25c64e93.css",
+	"styles/rel-image/spacer.gif": "styles/rel-image/spacer-b4682377dd.gif",
   "fonts/montserrat-light-webfont.woff": "fonts/montserrat-light-webfont-b2f7c06e09.woff",
   "fonts/montserrat-light-webfont.woff2": "fonts/montserrat-light-webfont-86efde6016.woff2"
 }
