@@ -40,7 +40,7 @@ module.exports = function override() {
             if ((allowedPathRegExp.test(file.revOrigPath) ) && file.contents) {
                 var contents = file.contents.toString();
 
-                var contents = contents.replace(cssUrlRegExp, function(m, url) {
+                contents = contents.replace(cssUrlRegExp, function(m, url) {
                   parsed = urlparse(url);
                   if(parsed.host) {
                     return m;

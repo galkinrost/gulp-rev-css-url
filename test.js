@@ -9,7 +9,7 @@ var through = require('through2');
 describe('gulp-rev-css-url', function () {
     beforeEach(function (done) {
         fse.remove('./results', done);
-    })
+    });
 
     it('Should override urls in css', function (done) {
         var expectedCSS = fs.readFileSync('./expected/styles.css', 'utf-8'),
