@@ -30,9 +30,9 @@
   "devDependencies": {
     "chai": "^4.3.8",
     "fs-extra": "~0.9.1",
-    "gulp": "~3.6.2",
+    "gulp": "^4.0.2",
     "gulp-jshint": "~1.6.1",
-    "gulp-rev": "~5.0.0",
+    "gulp-rev": "^9.0.0",
     "mocha": "^10.2.0"
   },
   "dependencies": {

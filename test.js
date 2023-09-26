@@ -58,7 +58,7 @@ describe('gulp-rev-css-url', function () {
                     cb(null, file);
                 },
                 function (cb) {
-                    expect(outputOrder).to.deep.equal(['styles.css', 'second.css']);
+                    expect(outputOrder).to.deep.equal(['/styles.css', '/second.css']);
                     done();
                 }
             ));
