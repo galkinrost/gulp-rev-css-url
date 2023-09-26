@@ -1,8 +1,6 @@
 CSS-URL [![Build Status](https://travis-ci.org/galkinrost/gulp-rev-css-url.svg?branch=master)](https://travis-ci.org/galkinrost/gulp-rev-css-url)
 =========
 
-:exclamation:  **Warning**: This is an unmaintained fork of an unmaintained project.  I recommend using [gul-rev-rewrite](https://www.npmjs.com/package/gulp-rev-rewrite) instead.
-
 The lightweight plugin to override urls in css files to hashed after <a href="https://www.npmjs.org/package/gulp-rev">gulp-rev</a>
 
 What is the result?
