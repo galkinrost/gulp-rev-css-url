@@ -56,7 +56,7 @@ module.exports = function override() {
                     (parsed.hash || '');
                   return 'url(\'' + _new + '\')';
                 });
-                file.contents = new Buffer(contents);
+                file.contents = Buffer.from(contents);
 
                 // update file's hash as it does in gulp-rev plugin
                 var hash = file.revHash = md5(contents).slice(0, 10);
