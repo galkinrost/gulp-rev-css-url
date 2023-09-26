@@ -1,10 +1,10 @@
-var through = require('through2');
-var crypto = require('crypto');
-var gutil = require('gulp-util');
-var path = require('path');
-var urlparse = require('url').parse;
+import through from 'through2';
+import crypto from 'crypto';
+import gutil from 'gulp-util';
+import path from 'path';
+import { parse as urlparse } from 'url';
 
-module.exports = function override() {
+function override() {
     var allowedPathRegExp = /\.css$/;
     var cssUrlRegExp = /url\(['"]?([^'"\)]*)['"]?\)/gi;
 
@@ -41,7 +41,7 @@ module.exports = function override() {
                 var contents = file.contents.toString();
 
                 contents = contents.replace(cssUrlRegExp, function(m, url) {
-                  parsed = urlparse(url);
+                  var parsed = urlparse(url);
                   if(parsed.host) {
                     return m;
                   }
@@ -69,4 +69,6 @@ module.exports = function override() {
         });
         cb();
     });
-};
+}
+
+export default override;

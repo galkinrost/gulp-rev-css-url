@@ -27,11 +27,12 @@
     "assets",
     "gulp-rev"
   ],
+	"type": "module",
   "devDependencies": {
     "chai": "^4.3.8",
     "fs-extra": "^11.1.1",
     "gulp": "^4.0.2",
-    "gulp-rev": "^9.0.0",
+    "gulp-rev": "^10.0.0",
     "jshint": "^2.13.6",
     "mocha": "^10.2.0"
   },
@@ -42,5 +43,8 @@
   "scripts": {
     "test": "mocha test.js -R list",
     "lint": "jshint index.js test.js"
-  }
+  },
+	"jshintConfig": {
+		"esversion": 6
+	}
 }

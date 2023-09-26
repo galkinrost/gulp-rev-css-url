@@ -1,10 +1,11 @@
-var rev = require('gulp-rev');
-var fs = require('fs');
-var gulp = require('gulp');
-var fse = require('fs-extra');
-var override = require('./index');
-var expect = require('chai').expect;
-var through = require('through2');
+import rev from 'gulp-rev';
+import fs from 'fs';
+import gulp from 'gulp';
+import fse from 'fs-extra';
+import { expect } from 'chai';
+import through from 'through2';
+
+import override from './index.js';
 
 describe('gulp-rev-css-url', function () {
     beforeEach(function (done) {
@@ -17,7 +18,7 @@ describe('gulp-rev-css-url', function () {
             expectedFunnyURLs = fs.readFileSync('./expected/funny_urls.css', 'utf-8'),
             expectedFont1 = fs.readFileSync('./expected/montserrat-light-webfont.woff', 'utf-8'),
             expectedFont2 = fs.readFileSync('./expected/montserrat-light-webfont.woff2', 'utf-8'),
-            expectedManifest = require('./expected/rev-manifest.json', 'utf-8');
+            expectedManifest = JSON.parse(fs.readFileSync('./expected/rev-manifest.json', 'utf-8'));
         gulp.src('./fixtures/**/*')
             .pipe(rev())
             .pipe(override())
@@ -26,7 +27,7 @@ describe('gulp-rev-css-url', function () {
             .pipe(gulp.dest('./results/'))
             .on('end', function () {
                 // check manifest
-                var manifest = require('./results/rev-manifest.json', 'utf-8');
+              var manifest = JSON.parse(fs.readFileSync('./results/rev-manifest.json', 'utf-8'));
                 expect(manifest).to.deep.equal(expectedManifest);
 
                 // load results
