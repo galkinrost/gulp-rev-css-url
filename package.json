@@ -36,7 +36,6 @@
     "mocha": "^10.2.0"
   },
   "dependencies": {
-    "crypto": "0.0.3",
     "gulp-util": "~2.2.14",
     "through2": "~0.4.2"
   },
